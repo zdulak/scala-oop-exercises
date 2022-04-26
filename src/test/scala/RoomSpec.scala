@@ -15,24 +15,25 @@ class RoomSpec extends AnyFlatSpec with should.Matchers {
 
   behavior of "The method enter"
 
-  it should "return Room with added person when its capacity is greater or equal than number of people in the room" in {
+  it should "return Room with added person when its capacity is greater or equal to the number of people in the room" in {
 //    Arrange
     val room = Room(2)
     val person = Person("Jacek")
 //    Act
-    val actualRoom = room.enter(person)
+    val actualRoomOption = room.enter(person)
 //    Assert
-    actualRoom shouldBe Room(2, List(person))
+    actualRoomOption shouldBe a [Some[Bank]]
+    actualRoomOption.get shouldBe Room(2, List(person))
   }
 
-  it should "return Room without added person when its capacity is lower than number of people in the room" in {
+  it should "return None when capacity of the room is lower than number of people in the room plus one" in {
     //    Arrange
     val room = Room(0)
     val person = Person("Jacek")
     //    Act
-    val actualRoom = room.enter(person)
+    val actualRoomOption = room.enter(person)
     //    Assert
-    actualRoom shouldBe room
+    actualRoomOption shouldBe None
   }
 
   behavior of "The method leave"
