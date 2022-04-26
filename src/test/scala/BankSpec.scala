@@ -11,11 +11,22 @@ class BankSpec extends AnyFlatSpec with should.Matchers {
     val sourceId = 1
     val targetId = 2
 //    Act
-    val actualBank = bank.transfer(1, 2, amount)
+    val actualBank = bank.transfer(sourceId, targetId, amount)
 //    Assert
     actualBank shouldBe a[Some[Bank]]
     actualBank.get.accountsById(sourceId).balance shouldBe  bank.accountsById(sourceId).balance - amount
     actualBank.get.accountsById(targetId).balance shouldBe  bank.accountsById(targetId).balance + amount
+  }
+
+  it should "return None for the transfer amount greater than the balance of the source account" in {
+    val bank = Bank(Map(1 -> Account(1, 0), 2 -> Account(2, 2000)))
+    val amount  = 500
+    val sourceId = 1
+    val targetId = 2
+    //    Act
+    val actualBank = bank.transfer(sourceId, targetId, amount)
+    //    Assert
+    actualBank shouldBe None
   }
 
 }
