@@ -1,3 +1,3 @@
 package Rooms
 
-case class Person(id: Int)
+case class Person(name: String)
