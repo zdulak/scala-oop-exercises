@@ -1,4 +1,4 @@
-import Rooms.{Person, Room}
+import rooms.{Person, Room}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 

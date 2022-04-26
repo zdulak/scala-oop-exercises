@@ -1,4 +1,4 @@
-package Rooms
+package rooms
 
 case class Room(capacity: Int, persons: List[Person] = List.empty[Person]) {
   if (capacity < 0) throw new IllegalArgumentException("A capacity must be positive, integer number")
